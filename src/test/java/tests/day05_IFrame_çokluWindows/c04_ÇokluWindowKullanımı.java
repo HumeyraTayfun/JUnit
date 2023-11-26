@@ -1,0 +1,47 @@
+package tests.day05_IFrame_çokluWindows;
+
+import Utilities.ReusableMethods;
+import Utilities.TestBase;
+import org.junit.Test;
+import org.openqa.selenium.By;
+
+public class c04_ÇokluWindowKullanımı extends TestBase {
+
+
+
+        @Test
+        public void test01(){
+
+        // biz driver ile yaptigimiz tum islemlerde
+        // ayni window'da calistik
+        // driver bu sebeple yaptigimiz her islemi
+        // ayni window icerisinde arastirir
+        // isterseniz siz yeni bir tab veya window olusturabilirsiniz
+
+        driver.get("https://www.testotomasyonu.com");
+        System.out.println(driver.getWindowHandle());
+
+        ReusableMethods.bekle(2);
+
+        driver.get("https://www.wisequarter.com");
+        System.out.println(driver.getWindowHandle());
+        ReusableMethods.bekle(2);
+
+        driver.navigate().back();
+        System.out.println(driver.getWindowHandle());
+        ReusableMethods.bekle(2);
+
+        // yeniden test otomasyonu sayfasindayiz
+        // electronics linkini tiklayalim
+
+        driver.findElement(By.xpath("(//a[text()='Electronics'])[3]")).click();
+        System.out.println(driver.getWindowHandle());
+        ReusableMethods.bekle(2);
+
+
+
+
+
+    }
+    }
+
