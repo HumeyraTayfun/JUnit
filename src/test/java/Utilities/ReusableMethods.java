@@ -1,26 +1,57 @@
 package Utilities;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class ReusableMethods {
-    public static List<String> stringlisteDönüştür(List<WebElement> elementlerListesi){
-        List<String> stringlerListesi= new ArrayList<>();
-        for (WebElement each:elementlerListesi){
+    public static List<String> stringlisteDönüştür(List<WebElement> elementlerListesi) {
+        List<String> stringlerListesi = new ArrayList<>();
+        for (WebElement each : elementlerListesi) {
             stringlerListesi.add(each.getText());
 
         }
         return stringlerListesi;
     }
-    public static void bekle(int saniye){
+
+    public static void bekle(int saniye) {
 
         try {
-            Thread.sleep(saniye*1000);
+            Thread.sleep(saniye * 1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public static WebDriver titleİleSayfaDeğiştir(WebDriver driver, String hedefSayfaTitle) {
+
+        Set<String> tümWhdSeti = driver.getWindowHandles();
+        for (String each : tümWhdSeti
+        ) {
+            String eachTitle = driver.switchTo().window(each).getTitle();
+            if (eachTitle.equals(hedefSayfaTitle)) {
+                return driver;
+            }
+        }
+        return driver;
+    }
+
+    public static String ilkSayfaWhdIleIkinciSayfaWhdBul(WebDriver driver, String ilkSayfaWhd) {
+
+        Set<String> tumWhdSeti = driver.getWindowHandles();
+
+        tumWhdSeti.remove(ilkSayfaWhd);
+
+        for (String each : tumWhdSeti
+        ) {
+            return each;
+        }
+
+        return null; // bu satirin hic calismayacagini biliyoruz
+        // sadece javanin endiselerini gidermek icin yazdik
     }
 }
