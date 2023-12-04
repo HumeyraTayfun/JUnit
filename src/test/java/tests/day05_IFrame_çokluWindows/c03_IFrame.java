@@ -1,5 +1,6 @@
 package tests.day05_IFrame_çokluWindows;
 
+import Utilities.ReusableMethods;
 import Utilities.TestBase;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -24,8 +25,17 @@ public class c03_IFrame extends TestBase {
         List<WebElement> iFrameList = driver.findElements(By.tagName("iframe"));
         System.out.println("Sayfadaki iframe sayisi : " + iFrameList.size());
         //4) ilk iframe'deki (Youtube) play butonuna tıklayınız.
+        //4) ilk iframe'deki (Youtube) play butonuna tıklayınız.
+        WebElement playIFrame = driver.findElement(By.xpath("(//iframe)[4]"));
+        driver.switchTo().frame(playIFrame);
+
+        driver.findElement(By.xpath("//button[@title='Play']")).click();
+        ReusableMethods.bekle(2);
 
         //5) ilk iframe'den çıkıp ana sayfaya dönünüz
+        driver.switchTo().defaultContent();
+
+        ReusableMethods.bekle(8);
 
 
     }

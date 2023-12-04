@@ -37,7 +37,7 @@ public class c01_WebTables extends TestBase {
            //  4. Tablodaki tum datalari yazdirin
             List<WebElement> dataElementleri=driver.findElements(By.xpath("//div[@role='tdata']"));
             List<String> dataElementleriStr=ReusableMethods.stringlisteDönüştür(dataElementleri);
-           // System.out.println(dataElementleriStr);
+            System.out.println(dataElementleriStr);
 
             // 6. Tablodaki satir sayisini yazdirin
             List<WebElement> satırElementi=driver.findElements(By.xpath("//div[@role='trow']"));
